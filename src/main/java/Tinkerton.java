@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Tinkerton {
@@ -10,7 +11,7 @@ public class Tinkerton {
     public static void main(String[] args) {
         intro();
         Scanner sc = new Scanner(System.in);
-        Task[] tasks = new Task[100];
+        ArrayList<Task> tasks = new ArrayList<>();
         int count = 0;
         boolean loop = true;
 
@@ -29,7 +30,7 @@ public class Tinkerton {
                     }
                     System.out.println("Here are the tasks in your list:");
                     for (int i = 0; i < count; i++) {
-                        System.out.println((i + 1) + ". " + tasks[i]);
+                        System.out.println((i + 1) + ". " + tasks.get(i));
                     }
                     continue;
                 } else if (inputList[0].equals("mark")) {
@@ -37,26 +38,26 @@ public class Tinkerton {
                     if (taskId < 0 || taskId > count - 1) {
                         throw new TinkertonException("Your numbering for your tasks may be abit off...");
                     }
-                    tasks[taskId].complete();
+                    tasks.get(taskId).complete();
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(tasks[taskId]);
+                    System.out.println(tasks.get(taskId));
                 } else if (inputList[0].equals("unmark")) {
                     int taskId = Integer.parseInt(inputList[1]) - 1;
                     if (taskId < 0 || taskId > count - 1) {
                         throw new TinkertonException("Your numbering for your tasks may be abit off...");
                     }
-                    tasks[taskId].uncomplete();
+                    tasks.get(taskId).uncomplete();
                     System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(tasks[taskId]);
+                    System.out.println(tasks.get(taskId));
                 } else if (inputList[0].equals("todo")) {
                     if (inputList.length < 2) {
                         throw new TinkertonException("You seem to be missing some information...");
                     }
                     String name = input.substring(5).trim();
-                    tasks[count] = new ToDo(name);
+                    tasks.add(new ToDo(name));
                     count++;
                     System.out.println("Got it, I've added this task:");
-                    System.out.println(tasks[count - 1]);
+                    System.out.println(tasks.get(count - 1));
                     System.out.println("Now you have " + count + " tasks in the list.");
                     continue;
                 } else if (inputList[0].equals("deadline")) {
@@ -69,10 +70,10 @@ public class Tinkerton {
                     }
                     String time = split[1].trim();
                     String name = split[0].substring(9).trim();
-                    tasks[count] = new Deadline(name, time);
+                    tasks.add(new Deadline(name, time));
                     count++;
                     System.out.println("Got it, I've added this task:");
-                    System.out.println(tasks[count - 1]);
+                    System.out.println(tasks.get(count - 1));
                     System.out.println("Now you have " + count + " tasks in the list.");
                     continue;
                 } else if (inputList[0].equals("event")) {
@@ -86,10 +87,10 @@ public class Tinkerton {
                     String start = split[1].trim();
                     String end = split[2].trim();
                     String name = split[0].substring(6).trim();
-                    tasks[count] = new Event(name, start, end);
+                    tasks.add(new Event(name, start, end));
                     count++;
                     System.out.println("Got it, I've added this task:");
-                    System.out.println(tasks[count - 1]);
+                    System.out.println(tasks.get(count - 1));
                     System.out.println("Now you have " + count + " tasks in the list.");
                     continue;
                 } else {
