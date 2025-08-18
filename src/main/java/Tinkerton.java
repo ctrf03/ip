@@ -23,6 +23,7 @@ public class Tinkerton {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             } else if (inputList[0].equals("list")) {
+                System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < count; i++) {
                     System.out.println((i + 1) + ". " + tasks[i]);
                 }
@@ -37,10 +38,30 @@ public class Tinkerton {
                 tasks[taskId].uncomplete();
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(tasks[taskId]);
-            } else {
-                tasks[count] = new Task(inputList[0]);
+            } else if (inputList[0].equals("todo")) {
+                tasks[count] = new ToDo(inputList[1]);
                 count++;
-                System.out.println("added " + input);
+                System.out.println("Got it, I've added this task:");
+                System.out.println(tasks[count - 1]);
+                System.out.println("Now you have " + count + " tasks in the list.");
+                continue;
+            } else if (inputList[0].equals("deadline")) {
+                String time = input.split("/by")[1].trim();
+                tasks[count] = new Deadline(inputList[1], time);
+                count++;
+                System.out.println("Got it, I've added this task:");
+                System.out.println(tasks[count - 1]);
+                System.out.println("Now you have " + count + " tasks in the list.");
+                continue;
+            } else if (inputList[0].equals("event")) {
+                String[] split = input.split("/from|/to");
+                String start = split[1].trim();
+                String end = split[2].trim();
+                tasks[count] = new Event(inputList[1], start, end);
+                count++;
+                System.out.println("Got it, I've added this task:");
+                System.out.println(tasks[count - 1]);
+                System.out.println("Now you have " + count + " tasks in the list.");
                 continue;
             }
         }
