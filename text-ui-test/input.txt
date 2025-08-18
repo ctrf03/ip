@@ -1,3 +1,11 @@
+list
+mark 1
+blah
+todo
+deadline
+deadline /by
+event
+event /from /to
 todo buy pen
 deadline complete essay /by Monday
 event meeting /from Tue 2pm /to 4pm
