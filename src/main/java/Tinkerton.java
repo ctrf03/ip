@@ -33,6 +33,9 @@ public class Tinkerton {
                     }
                     continue;
                 } else if (inputList[0].equals("mark")) {
+                    if (inputList.length < 2) {
+                        throw new TinkertonException("Mark what...");
+                    }
                     int taskId = Integer.parseInt(inputList[1]) - 1;
                     if (taskId < 0 || taskId > tasks.size() - 1) {
                         throw new TinkertonException("Your numbering for your tasks may be abit off...");
@@ -41,6 +44,9 @@ public class Tinkerton {
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println(tasks.get(taskId));
                 } else if (inputList[0].equals("unmark")) {
+                    if (inputList.length < 2) {
+                        throw new TinkertonException("Unmark what...");
+                    }
                     int taskId = Integer.parseInt(inputList[1]) - 1;
                     if (taskId < 0 || taskId > tasks.size() - 1) {
                         throw new TinkertonException("Your numbering for your tasks may be abit off...");
@@ -89,6 +95,18 @@ public class Tinkerton {
                     System.out.println(tasks.get(tasks.size() - 1));
                     System.out.println("Now you have " + tasks.size() + " tasks in the list.");
                     continue;
+                } else if (inputList[0].equals("delete")) {
+                    if (inputList.length < 2) {
+                        throw new TinkertonException("Delete what...");
+                    }
+                    int taskId = Integer.parseInt(inputList[1]) - 1;
+                    if (taskId < 0 || taskId > tasks.size() - 1) {
+                        throw new TinkertonException("Your numbering for your tasks may be abit off...");
+                    }
+                    Task removed = tasks.remove(taskId);
+                    System.out.println("Noted, I've removed this task:");
+                    System.out.println(removed);
+                    System.out.println("Now you have " + tasks.size() + " tasks in the list.");
                 } else {
                     throw new TinkertonException("Erm... What are you saying?");
                 }
