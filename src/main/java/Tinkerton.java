@@ -39,15 +39,18 @@ public class Tinkerton {
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(tasks[taskId]);
             } else if (inputList[0].equals("todo")) {
-                tasks[count] = new ToDo(inputList[1]);
+                String name = input.substring(5).trim();
+                tasks[count] = new ToDo(name);
                 count++;
                 System.out.println("Got it, I've added this task:");
                 System.out.println(tasks[count - 1]);
                 System.out.println("Now you have " + count + " tasks in the list.");
                 continue;
             } else if (inputList[0].equals("deadline")) {
-                String time = input.split("/by")[1].trim();
-                tasks[count] = new Deadline(inputList[1], time);
+                String[] parts = input.split("/by");
+                String time = parts[1].trim();
+                String name = parts[0].substring(9).trim();
+                tasks[count] = new Deadline(name, time);
                 count++;
                 System.out.println("Got it, I've added this task:");
                 System.out.println(tasks[count - 1]);
@@ -57,7 +60,8 @@ public class Tinkerton {
                 String[] split = input.split("/from|/to");
                 String start = split[1].trim();
                 String end = split[2].trim();
-                tasks[count] = new Event(inputList[1], start, end);
+                String name = split[0].substring(6).trim();
+                tasks[count] = new Event(name, start, end);
                 count++;
                 System.out.println("Got it, I've added this task:");
                 System.out.println(tasks[count - 1]);
