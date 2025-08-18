@@ -7,13 +7,17 @@ public class Task {
         this.completed = false;
     }
 
-    public void complete(Task task) {
+    public void complete() {
         this.completed = true;
+    }
+
+    public void uncomplete() {
+        this.completed = false;
     }
 
     @Override
     public String toString() {
         String marker = this.completed ? "[X]" : "[ ]";
-        return marker + name;
+        return marker + " " + name;
     }
 }
