@@ -11,7 +11,8 @@ public class Tinkerton {
     public static void main(String[] args) {
         intro();
         Scanner sc = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
+        Save save = new Save("../../../data/Tinkerton.txt");
+        ArrayList<Task> tasks = save.load();
         boolean loop = true;
 
         while (loop) {
@@ -79,6 +80,7 @@ public class Tinkerton {
                         System.out.println("Got it, I've added this task:");
                         System.out.println(tasks.get(tasks.size() - 1));
                         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                        save.save(tasks);
                         break;
 
                     case DEADLINE:
@@ -95,6 +97,7 @@ public class Tinkerton {
                         System.out.println("Got it, I've added this task:");
                         System.out.println(tasks.get(tasks.size() - 1));
                         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                        save.save(tasks);
                         break;
 
                     case EVENT:
@@ -112,6 +115,7 @@ public class Tinkerton {
                         System.out.println("Got it, I've added this task:");
                         System.out.println(tasks.get(tasks.size() - 1));
                         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                        save.save(tasks);
                         break;
 
                     case DELETE:
