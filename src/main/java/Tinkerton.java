@@ -75,7 +75,7 @@ public class Tinkerton {
                             throw new TinkertonException("You seem to be missing some information...");
                         }
                         String toDOName = input.substring(5).trim();
-                        tasks.add(new ToDo(toDOName));
+                        tasks.add(new ToDo(toDOName, false));
                         System.out.println("Got it, I've added this task:");
                         System.out.println(tasks.get(tasks.size() - 1));
                         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
@@ -91,7 +91,7 @@ public class Tinkerton {
                         }
                         String time = deadlineSplit[1].trim();
                         String deadlineName = deadlineSplit[0].substring(9).trim();
-                        tasks.add(new Deadline(deadlineName, time));
+                        tasks.add(new Deadline(deadlineName, false, time));
                         System.out.println("Got it, I've added this task:");
                         System.out.println(tasks.get(tasks.size() - 1));
                         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
@@ -108,7 +108,7 @@ public class Tinkerton {
                         String start = eventSplit[1].trim();
                         String end = eventSplit[2].trim();
                         String eventName = eventSplit[0].substring(6).trim();
-                        tasks.add(new Event(eventName, start, end));
+                        tasks.add(new Event(eventName, false, start, end));
                         System.out.println("Got it, I've added this task:");
                         System.out.println(tasks.get(tasks.size() - 1));
                         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
