@@ -1,23 +1,33 @@
 public abstract class Task {
     private String name;
-    private boolean completed;
+    private boolean isCompleted;
 
-    public Task(String name) {
+    public Task(String name, boolean isCompleted) {
         this.name = name;
-        this.completed = false;
+        this.isCompleted = isCompleted;
     }
 
     public void complete() {
-        this.completed = true;
+        this.isCompleted = true;
     }
 
     public void uncomplete() {
-        this.completed = false;
+        this.isCompleted = false;
+    }
+
+    public boolean isCompleted() {
+        return this.isCompleted;
+    }
+
+    public String name() {
+        return this.name;
     }
 
     @Override
     public String toString() {
-        String marker = this.completed ? "[X]" : "[ ]";
+        String marker = this.isCompleted ? "[X]" : "[ ]";
         return marker + " " + name;
     }
+
+    public abstract String toFile();
 }
