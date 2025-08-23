@@ -11,7 +11,7 @@ public class Tinkerton {
     public static void main(String[] args) {
         intro();
         Scanner sc = new Scanner(System.in);
-        Save save = new Save("../../../data/Tinkerton.txt");
+        Save save = new Save("data/Tinkerton.txt");
         ArrayList<Task> tasks = save.load();
         boolean loop = true;
 
@@ -56,6 +56,7 @@ public class Tinkerton {
                         tasks.get(markId).complete();
                         System.out.println("Nice! I've marked this task as done:");
                         System.out.println(tasks.get(markId));
+                        save.save(tasks);
                         break;
 
                     case UNMARK:
@@ -69,6 +70,7 @@ public class Tinkerton {
                         tasks.get(unmarkId).uncomplete();
                         System.out.println("OK, I've marked this task as not done yet:");
                         System.out.println(tasks.get(unmarkId));
+                        save.save(tasks);
                         break;
 
                     case TODO:
@@ -130,6 +132,7 @@ public class Tinkerton {
                         System.out.println("Noted, I've removed this task:");
                         System.out.println(removed);
                         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                        save.save(tasks);
                         break;
 
                     case UNKNOWN:
