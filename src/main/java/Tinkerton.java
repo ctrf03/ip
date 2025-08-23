@@ -11,7 +11,8 @@ public class Tinkerton {
     public static void main(String[] args) {
         intro();
         Scanner sc = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
+        Save save = new Save("data/Tinkerton.txt");
+        ArrayList<Task> tasks = save.load();
         boolean loop = true;
 
         while (loop) {
@@ -55,6 +56,7 @@ public class Tinkerton {
                         tasks.get(markId).complete();
                         System.out.println("Nice! I've marked this task as done:");
                         System.out.println(tasks.get(markId));
+                        save.save(tasks);
                         break;
 
                     case UNMARK:
@@ -68,6 +70,7 @@ public class Tinkerton {
                         tasks.get(unmarkId).uncomplete();
                         System.out.println("OK, I've marked this task as not done yet:");
                         System.out.println(tasks.get(unmarkId));
+                        save.save(tasks);
                         break;
 
                     case TODO:
@@ -75,10 +78,11 @@ public class Tinkerton {
                             throw new TinkertonException("You seem to be missing some information...");
                         }
                         String toDOName = input.substring(5).trim();
-                        tasks.add(new ToDo(toDOName));
+                        tasks.add(new ToDo(toDOName, false));
                         System.out.println("Got it, I've added this task:");
                         System.out.println(tasks.get(tasks.size() - 1));
                         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                        save.save(tasks);
                         break;
 
                     case DEADLINE:
@@ -91,10 +95,11 @@ public class Tinkerton {
                         }
                         String time = deadlineSplit[1].trim();
                         String deadlineName = deadlineSplit[0].substring(9).trim();
-                        tasks.add(new Deadline(deadlineName, time));
+                        tasks.add(new Deadline(deadlineName, false, time));
                         System.out.println("Got it, I've added this task:");
                         System.out.println(tasks.get(tasks.size() - 1));
                         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                        save.save(tasks);
                         break;
 
                     case EVENT:
@@ -108,10 +113,11 @@ public class Tinkerton {
                         String start = eventSplit[1].trim();
                         String end = eventSplit[2].trim();
                         String eventName = eventSplit[0].substring(6).trim();
-                        tasks.add(new Event(eventName, start, end));
+                        tasks.add(new Event(eventName, false, start, end));
                         System.out.println("Got it, I've added this task:");
                         System.out.println(tasks.get(tasks.size() - 1));
                         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                        save.save(tasks);
                         break;
 
                     case DELETE:
@@ -126,6 +132,7 @@ public class Tinkerton {
                         System.out.println("Noted, I've removed this task:");
                         System.out.println(removed);
                         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                        save.save(tasks);
                         break;
 
                     case UNKNOWN:
