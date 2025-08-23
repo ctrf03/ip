@@ -16,6 +16,6 @@ public class Event extends Task {
     @Override
     public String toFile() {
         String completed = this.isCompleted() ? "1" : "0";
-        return "T | " + completed + " | " + this.name() + " | " + start + " " + end;
+        return "E | " + completed + " | " + this.name() + " | " + start + " " + end;
     }
 }
