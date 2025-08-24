@@ -2,7 +2,6 @@ import java.io.File;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Save {
     private final String filePath;
@@ -11,8 +10,8 @@ public class Save {
         this.filePath = filePath;
     }
 
-    public ArrayList<Task> load() {
-        ArrayList<Task> tasks = new ArrayList<>();
+    public TaskList load() {
+        TaskList tasks = new TaskList();
         File file = new File(filePath);
 
         try {
@@ -58,11 +57,12 @@ public class Save {
         return tasks;
     }
 
-    public void save(ArrayList<Task> tasks) {
+    public void save(TaskList tasks) {
         try {
             FileWriter writer = new FileWriter(filePath);
 
-            for (Task curr : tasks) {
+            for (int i = 0; i < tasks.size(); i++) {
+                Task curr = tasks.get(i);
                 writer.write(curr.toFile());
                 writer.write(System.lineSeparator());
             }

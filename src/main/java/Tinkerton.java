@@ -3,17 +3,24 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Tinkerton {
+    private Save save;
+    private TaskList tasks;
 
     public static void intro() {
         System.out.println("Hello! I'm Tinkerton");
         System.out.println("What can I do for you?");
     }
 
+    public Tinkerton(String filePath) {
+        this.save = new Save("data/Tinkerton.txt");
+        this.tasks = save.load();
+    }
+
     public static void main(String[] args) {
         intro();
         Scanner sc = new Scanner(System.in);
-        Save save = new Save("data/Tinkerton.txt");
-        ArrayList<Task> tasks = save.load();
+        // Save save = new Save("data/Tinkerton.txt");
+        // ArrayList<Task> tasks = save.load();
         boolean loop = true;
 
         while (loop) {
