@@ -5,19 +5,34 @@ import java.util.Scanner;
 public class Tinkerton {
     private Save save;
     private TaskList tasks;
+    private Ui ui;
 
-    public static void intro() {
-        System.out.println("Hello! I'm Tinkerton");
-        System.out.println("What can I do for you?");
-    }
+    // public static void intro() {
+    // System.out.println("Hello! I'm Tinkerton");
+    // System.out.println("What can I do for you?");
+    // }
 
     public Tinkerton(String filePath) {
         this.save = new Save("data/Tinkerton.txt");
         this.tasks = save.load();
+        this.ui = new Ui();
+    }
+
+    public void run() {
+        this.ui.intro();
+        boolean isExit = false;
+
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+
+            } catch (TinkertonException e) {
+
+            }
+        }
     }
 
     public static void main(String[] args) {
-        intro();
         Scanner sc = new Scanner(System.in);
         // Save save = new Save("data/Tinkerton.txt");
         // ArrayList<Task> tasks = save.load();
