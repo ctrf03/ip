@@ -1,5 +1,3 @@
-import java.time.LocalDateTime;
-
 public abstract class Task {
     private String name;
     private boolean isCompleted;
