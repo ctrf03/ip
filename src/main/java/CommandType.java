@@ -1,5 +1,5 @@
 public enum CommandType {
-    BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, UNKNOWN;
+    BYE, LIST, SHOW, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, UNKNOWN;
 
     public static CommandType command(String input) {
         try {

@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public abstract class Task {
     private String name;
     private boolean isCompleted;
@@ -30,4 +32,6 @@ public abstract class Task {
     }
 
     public abstract String toFile();
+
+    public abstract boolean onDate(Date date);
 }
