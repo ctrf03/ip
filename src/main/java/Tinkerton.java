@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Tinkerton {
@@ -40,6 +41,45 @@ public class Tinkerton {
 
                         for (int i = 0; i < tasks.size(); i++) {
                             System.out.println((i + 1) + ". " + tasks.get(i));
+                        }
+
+                        break;
+
+                    case SHOW:
+                        if (tasks.size() == 0) {
+                            throw new TinkertonException(
+                                    "I feel like your list is empty so there is no list to show...");
+                        } else if (!input.contains("/on")) {
+                            throw new TinkertonException("Show tasks on what date..");
+                        }
+
+                        String[] showSplit = input.split("/on");
+
+                        if (showSplit.length < 2) {
+                            throw new TinkertonException("You seem to be missing some information...");
+                        }
+
+                        String date = showSplit[1].trim();
+
+                        if (!date.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                            throw new TinkertonException("The format of your deadline should be yyyy-MM-dd!");
+                        }
+
+                        Date check = new Date(date + " 0000");
+
+                        List<Task> filtered = tasks.stream()
+                                .filter(t -> t.onDate(check))
+                                .toList();
+
+                        if (filtered.size() == 0) {
+                            throw new TinkertonException(
+                                    "No tasks on that day yay!");
+                        }
+
+                        System.out.println("Here are the tasks on that day");
+
+                        for (int i = 0; i < filtered.size(); i++) {
+                            System.out.println((i + 1) + ". " + filtered.get(i));
                         }
 
                         break;
