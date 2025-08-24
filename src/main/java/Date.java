@@ -8,11 +8,11 @@ public class Date {
     private String output;
     private LocalDateTime afterFormat;
 
-    public Date(String input) {
+    public Date(String input) throws TinkertonException {
         try {
             this.afterFormat = LocalDateTime.parse(input, inputFormatter);
         } catch (DateTimeParseException e) {
-            System.out.println("Are you sure this is a valid date?");
+            throw new TinkertonException("Are you sure this is a valid date?");
         }
 
         this.output = afterFormat.format(outputFormatter);
