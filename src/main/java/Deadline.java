@@ -1,11 +1,17 @@
+import java.time.LocalDateTime;
+
 public class Deadline extends Task {
     private Date date;
     private String time;
 
-    public Deadline(String name, boolean isCompleted, String time) {
+    public Deadline(String name, boolean isCompleted, String time) throws TinkertonException {
         super(name, isCompleted);
         this.time = time;
         this.date = new Date(time);
+
+        if (date.date().isBefore(LocalDateTime.now())) {
+            throw new TinkertonException("Deadline that is already overdue? A bit too late to add that...");
+        }
     }
 
     @Override
