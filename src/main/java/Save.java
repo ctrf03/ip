@@ -40,8 +40,7 @@ public class Save {
                         break;
 
                     case "E":
-                        String[] range = parts[3].split(" ");
-                        tasks.add(new Event(parts[2].trim(), isCompleted, range[0], range[1]));
+                        tasks.add(new Event(parts[2].trim(), isCompleted, parts[3].trim(), parts[4].trim()));
                         break;
 
                     default:
