@@ -24,4 +24,9 @@ public class Deadline extends Task {
         String completed = this.isCompleted() ? "1" : "0";
         return "D | " + completed + " | " + this.name() + " | " + this.time;
     }
+
+    @Override
+    public boolean onDate(Date date) {
+        return date.date().toLocalDate().isEqual(this.date.date().toLocalDate());
+    }
 }

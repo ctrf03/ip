@@ -30,4 +30,9 @@ public class Event extends Task {
         String completed = this.isCompleted() ? "1" : "0";
         return "E | " + completed + " | " + this.name() + " | " + this.start + " | " + this.end;
     }
+
+    @Override
+    public boolean onDate(Date date) {
+        return date.date().toLocalDate().isEqual(this.startDate.date().toLocalDate());
+    }
 }
