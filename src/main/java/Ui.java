@@ -1,6 +1,11 @@
 import java.util.Scanner;
 
 public class Ui {
+    private Scanner scanner;
+
+    public Ui() {
+        this.scanner = new Scanner(System.in);
+    }
 
     public void intro() {
         System.out.println("Hello! I'm Tinkerton");
@@ -8,9 +13,18 @@ public class Ui {
     }
 
     public String readCommand() {
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-        sc.close();
-        return input;
+        return scanner.nextLine();
+    }
+
+    public void print(String string) {
+        System.out.println(string);
+    }
+
+    public void showError(String string) {
+        System.out.println(string);
+    }
+
+    public void close() {
+        scanner.close();
     }
 }
