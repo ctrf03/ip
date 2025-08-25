@@ -1,3 +1,11 @@
+package tinkerton.core;
+
+import tinkerton.util.Ui;
+import tinkerton.util.Parser;
+import tinkerton.command.Command;
+import tinkerton.task.TaskList;
+import tinkerton.storage.Save;
+
 public class Tinkerton {
     private Save save;
     private TaskList tasks;

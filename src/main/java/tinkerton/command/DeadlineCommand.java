@@ -1,3 +1,11 @@
+package tinkerton.command;
+
+import tinkerton.util.Ui;
+import tinkerton.core.TinkertonException;
+import tinkerton.task.TaskList;
+import tinkerton.task.Deadline;
+import tinkerton.storage.Save;
+
 public class DeadlineCommand extends Command {
     public DeadlineCommand(String fullCommand) {
         super(fullCommand);

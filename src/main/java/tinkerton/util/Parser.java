@@ -1,3 +1,8 @@
+package tinkerton.util;
+
+import tinkerton.command.*;
+import tinkerton.core.TinkertonException;
+
 public class Parser {
     public static Command parse(String fullCommand) throws TinkertonException {
         String[] parts = fullCommand.split(" ");

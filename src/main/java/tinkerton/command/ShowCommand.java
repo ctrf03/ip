@@ -1,3 +1,11 @@
+package tinkerton.command;
+
+import tinkerton.util.Ui;
+import tinkerton.util.Date;
+import tinkerton.core.TinkertonException;
+import tinkerton.task.TaskList;
+import tinkerton.storage.Save;
+
 public class ShowCommand extends Command {
     public ShowCommand(String fullCommand) {
         super(fullCommand);

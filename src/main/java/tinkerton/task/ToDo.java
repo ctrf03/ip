@@ -1,3 +1,7 @@
+package tinkerton.task;
+
+import tinkerton.util.Date;
+
 public class ToDo extends Task {
     public ToDo(String name, boolean isCompleted) {
         super(name, isCompleted);

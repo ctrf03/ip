@@ -1,3 +1,11 @@
+package tinkerton.command;
+
+import tinkerton.util.Ui;
+import tinkerton.core.TinkertonException;
+import tinkerton.task.TaskList;
+import tinkerton.task.Event;
+import tinkerton.storage.Save;
+
 public class EventCommand extends Command {
     public EventCommand(String fullCommand) {
         super(fullCommand);
