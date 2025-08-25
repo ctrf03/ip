@@ -1,3 +1,11 @@
+package tinkerton.command;
+
+import tinkerton.util.Ui;
+import tinkerton.core.TinkertonException;
+import tinkerton.task.TaskList;
+import tinkerton.task.Task;
+import tinkerton.storage.Save;
+
 public class DeleteCommand extends Command {
     public DeleteCommand(String fullCommand) {
         super(fullCommand);
