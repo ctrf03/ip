@@ -1,3 +1,5 @@
+package tinkerton.task;
+
 import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
