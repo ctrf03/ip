@@ -1,3 +1,5 @@
+package tinkerton.util;
+
 public enum CommandType {
     BYE, LIST, SHOW, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, UNKNOWN;
 
