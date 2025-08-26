@@ -37,9 +37,8 @@ public class DeadlineTest {
 
     @Test
     void testConstructor_exceptionThrown() {
-        Deadline deadline = null;
         try {
-            deadline = new Deadline("Read book",
+            new Deadline("Read book",
                     true,
                     "1999-12-12 1800");
         } catch (TinkertonException e) {
