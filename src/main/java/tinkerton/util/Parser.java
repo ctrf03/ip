@@ -9,35 +9,35 @@ public class Parser {
         CommandType command = CommandType.command(parts[0]);
 
         switch (command) {
-            case BYE:
-                return new ByeCommand(fullCommand);
+        case BYE:
+            return new ByeCommand(fullCommand);
 
-            case LIST:
-                return new ListCommand(fullCommand);
+        case LIST:
+            return new ListCommand(fullCommand);
 
-            case SHOW:
-                return new ShowCommand(fullCommand);
+        case SHOW:
+            return new ShowCommand(fullCommand);
 
-            case MARK:
-                return new MarkCommand(fullCommand);
+        case MARK:
+            return new MarkCommand(fullCommand);
 
-            case UNMARK:
-                return new UnmarkCommand(fullCommand);
+        case UNMARK:
+            return new UnmarkCommand(fullCommand);
 
-            case TODO:
-                return new ToDoCommand(fullCommand);
+        case TODO:
+            return new ToDoCommand(fullCommand);
 
-            case DEADLINE:
-                return new DeadlineCommand(fullCommand);
+        case DEADLINE:
+            return new DeadlineCommand(fullCommand);
 
-            case EVENT:
-                return new EventCommand(fullCommand);
+        case EVENT:
+            return new EventCommand(fullCommand);
 
-            case DELETE:
-                return new DeleteCommand(fullCommand);
-            case UNKNOWN:
-            default:
-                throw new TinkertonException("Erm... What are you saying?");
+        case DELETE:
+            return new DeleteCommand(fullCommand);
+        case UNKNOWN:
+        default:
+            throw new TinkertonException("Erm... What are you saying?");
         }
     }
 }
