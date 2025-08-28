@@ -6,11 +6,28 @@ import tinkerton.task.TaskList;
 import tinkerton.task.Task;
 import tinkerton.storage.Save;
 
+/**
+ * Represents a command to delete a task from the task list.
+ */
 public class DeleteCommand extends Command {
+    /**
+     * Constructs a DeleteCommand with the full command string.
+     *
+     * @param fullCommand The full user input command string.
+     */
     public DeleteCommand(String fullCommand) {
         super(fullCommand);
     }
 
+    /**
+     * Executes the delete command, removing the specified task from the list.
+     *
+     * @param tasks The list of tasks.
+     * @param ui The user interface handler.
+     * @param save The save handler for persisting tasks.
+     * @throws TinkertonException If the command format is invalid or the task index is out of
+     *         bounds.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
@@ -35,6 +52,11 @@ public class DeleteCommand extends Command {
         save.save(tasks);
     }
 
+    /**
+     * Indicates whether this command should exit the application.
+     *
+     * @return false, as deleting a task does not exit the application.
+     */
     @Override
     public boolean isExit() {
         return false;

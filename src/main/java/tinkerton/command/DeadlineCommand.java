@@ -6,11 +6,27 @@ import tinkerton.task.TaskList;
 import tinkerton.task.Deadline;
 import tinkerton.storage.Save;
 
+/**
+ * Represents a command to add a Deadline task.
+ */
 public class DeadlineCommand extends Command {
+    /**
+     * Constructs a DeadlineCommand with the full command string.
+     *
+     * @param fullCommand The full user input command string.
+     */
     public DeadlineCommand(String fullCommand) {
         super(fullCommand);
     }
 
+    /**
+     * Executes the Deadline command, adding a new Deadline task to the list.
+     *
+     * @param tasks The list of tasks.
+     * @param ui The user interface handler.
+     * @param save The save handler for persisting tasks.
+     * @throws TinkertonException If the command format is invalid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
@@ -40,6 +56,11 @@ public class DeadlineCommand extends Command {
         save.save(tasks);
     }
 
+    /**
+     * Indicates whether this command should exit the application.
+     *
+     * @return false, as adding a Deadline does not exit the application.
+     */
     @Override
     public boolean isExit() {
         return false;
