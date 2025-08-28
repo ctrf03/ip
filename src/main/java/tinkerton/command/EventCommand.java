@@ -6,11 +6,27 @@ import tinkerton.task.TaskList;
 import tinkerton.task.Event;
 import tinkerton.storage.Save;
 
+/**
+ * Represents a command to add an Event task.
+ */
 public class EventCommand extends Command {
+    /**
+     * Constructs an EventCommand with the full command string.
+     *
+     * @param fullCommand The full user input command string.
+     */
     public EventCommand(String fullCommand) {
         super(fullCommand);
     }
 
+    /**
+     * Executes the Event command, adding a new Event task to the list.
+     *
+     * @param tasks The list of tasks.
+     * @param ui The user interface handler.
+     * @param save The save handler for persisting tasks.
+     * @throws TinkertonException If the command format is invalid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
@@ -46,6 +62,11 @@ public class EventCommand extends Command {
         save.save(tasks);
     }
 
+    /**
+     * Indicates whether this command should exit the application.
+     *
+     * @return false, as adding an Event does not exit the application.
+     */
     @Override
     public boolean isExit() {
         return false;
