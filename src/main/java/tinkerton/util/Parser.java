@@ -45,6 +45,9 @@ public class Parser {
 
         case DELETE:
             return new DeleteCommand(fullCommand);
+
+        case FIND:
+            return new FindCommand(fullCommand);
         case UNKNOWN:
         default:
             throw new TinkertonException("Erm... What are you saying?");
