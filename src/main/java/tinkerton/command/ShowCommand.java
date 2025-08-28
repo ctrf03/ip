@@ -30,7 +30,7 @@ public class ShowCommand extends Command {
         String date = parts[1].trim();
 
         if (!date.matches("\\d{4}-\\d{2}-\\d{2}")) {
-            throw new TinkertonException("The format of your deadline should be yyyy-MM-dd!");
+            throw new TinkertonException("The format of your date should be yyyy-MM-dd!");
         }
 
         Date check = new Date(date + " 0000");
