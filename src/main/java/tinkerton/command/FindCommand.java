@@ -35,9 +35,9 @@ public class FindCommand extends Command {
         if (tasks.size() == 0) {
             throw new TinkertonException(
                     "I feel like your list is empty so there is no list to show...");
-        }
-
-        if (parts.length < 2) {
+        } else if (parts.length < 2) {
+            throw new TinkertonException("You seem to be missing some information...");
+        } else if (parts[1].trim().isEmpty()) {
             throw new TinkertonException("You seem to be missing some information...");
         }
 
