@@ -47,13 +47,4 @@ public class Tinkerton {
             }
         }
     }
-
-    /**
-     * Entry point for the Tinkerton application.
-     *
-     * @param args Command-line arguments.
-     */
-    public static void main(String[] args) {
-        new Tinkerton("data/tasks.txt").run();
-    }
 }
