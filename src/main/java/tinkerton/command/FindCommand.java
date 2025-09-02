@@ -26,9 +26,10 @@ public class FindCommand extends Command {
      * @param save The save handler for persisting tasks.
      * @throws TinkertonException If the task list is empty, the command format is invalid, or no
      *         tasks match the keyword.
+     * @return The farewell message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
+    public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
         String[] parts = fullCommand.split(" ", 2);
 
@@ -49,11 +50,13 @@ public class FindCommand extends Command {
             throw new TinkertonException("No tasks found with that keyword!");
         }
 
-        ui.print("Here are the matching tasks in your list:");
+        StringBuilder result = new StringBuilder("Here are the matching tasks in your list:\n");
 
         for (int i = 0; i < filtered.size(); i++) {
-            ui.print((i + 1) + ". " + filtered.get(i));
+            result.append((i + 1)).append(". ").append(filtered.get(i)).append("\n");
         }
+
+        return result.toString();
     }
 
     /**

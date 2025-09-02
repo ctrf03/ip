@@ -32,28 +32,12 @@ public class Tinkerton {
     /**
      * Runs the main application loop, handling user commands until exit.
      */
-    public void run() {
-        this.ui.intro();
-        boolean isExit = false;
-
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command command = Parser.parse(fullCommand);
-                command.execute(tasks, ui, save);
-                isExit = command.isExit();
-            } catch (TinkertonException e) {
-                ui.showError(e.getMessage());
-            }
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks, ui, save);
+        } catch (TinkertonException e) {
+            return e.getMessage();
         }
-    }
-
-    /**
-     * Entry point for the Tinkerton application.
-     *
-     * @param args Command-line arguments.
-     */
-    public static void main(String[] args) {
-        new Tinkerton("data/tasks.txt").run();
     }
 }

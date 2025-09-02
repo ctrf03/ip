@@ -38,8 +38,9 @@ public abstract class Command {
      * @param ui The user interface handler.
      * @param save The save handler for persisting tasks.
      * @throws TinkertonException If the command execution fails.
+     * @return The farewell message.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException;
+    public abstract String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException;
 
     /**
      * Indicates whether this command should exit the application.

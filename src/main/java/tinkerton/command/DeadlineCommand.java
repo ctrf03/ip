@@ -26,9 +26,10 @@ public class DeadlineCommand extends Command {
      * @param ui The user interface handler.
      * @param save The save handler for persisting tasks.
      * @throws TinkertonException If the command format is invalid.
+     * @return The farewell message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
+    public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
         String[] parts = fullCommand.split("/by");
 
@@ -49,11 +50,10 @@ public class DeadlineCommand extends Command {
         String deadlineName = parts[0].substring(9).trim();
         tasks.add(new Deadline(deadlineName, false, time));
 
-        ui.print("Got it, I've added this task:");
-        ui.print(tasks.get(tasks.size() - 1).toString());
-        ui.print("Now you have " + tasks.size() + " tasks in the list.");
-
         save.save(tasks);
+
+        return "Got it, I've added this task:\n" + tasks.get(tasks.size() - 1).toString()
+                + "<SPLIT>Now you have " + tasks.size() + " tasks in the list.";
     }
 
     /**
