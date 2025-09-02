@@ -27,9 +27,10 @@ public class DeleteCommand extends Command {
      * @param save The save handler for persisting tasks.
      * @throws TinkertonException If the command format is invalid or the task index is out of
      *         bounds.
+     * @return The farewell message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
+    public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
         String[] parts = fullCommand.split(" ");
 
@@ -45,11 +46,10 @@ public class DeleteCommand extends Command {
 
         Task removed = tasks.remove(taskId);
 
-        ui.print("Noted, I've removed this task:");
-        ui.print(removed.toString());
-        ui.print("Now you have " + tasks.size() + " tasks in the list.");
-
         save.save(tasks);
+
+        return "Noted, I've removed this task:\n" + removed.toString() + "\nNow you have "
+                + tasks.size() + " tasks in the list.";
     }
 
     /**
