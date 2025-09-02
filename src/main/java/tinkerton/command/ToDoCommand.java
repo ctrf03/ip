@@ -26,9 +26,10 @@ public class ToDoCommand extends Command {
      * @param ui The user interface handler.
      * @param save The save handler for persisting tasks.
      * @throws TinkertonException If the command format is invalid.
+     * @return The farewell message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
+    public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
         String[] parts = super.getFull().split(" ");
 
@@ -39,11 +40,13 @@ public class ToDoCommand extends Command {
         String toDOName = fullCommand.substring(5).trim();
         tasks.add(new ToDo(toDOName, false));
 
-        ui.print("Got it, I've added this task:");
-        ui.print(tasks.get(tasks.size() - 1).toString());
-        ui.print("Now you have " + tasks.size() + " tasks in the list.");
+        StringBuilder result = new StringBuilder("Got it, I've added this task:\n");
+        result.append(tasks.get(tasks.size() - 1).toString()).append("\n");
+        result.append("Now you have ").append(tasks.size()).append(" tasks in the list.");
 
         save.save(tasks);
+
+        return result.toString();
     }
 
     /**
