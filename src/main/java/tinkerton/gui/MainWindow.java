@@ -26,7 +26,8 @@ public class MainWindow extends AnchorPane {
     private Tinkerton tinkerton;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image dukeImage =
+            new Image(this.getClass().getResourceAsStream("/images/DaTinkerton.png"));
 
     @FXML
     public void initialize() {
