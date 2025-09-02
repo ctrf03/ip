@@ -28,7 +28,7 @@ public class ShowCommand extends Command {
      * @throws TinkertonException If the command format is invalid or no tasks are found.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
+    public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
         String[] parts = fullCommand.split("/on");
 
@@ -57,11 +57,13 @@ public class ShowCommand extends Command {
             throw new TinkertonException("No tasks on that day yay!");
         }
 
-        ui.print("Here are the tasks on that day");
+        StringBuilder result = new StringBuilder("Here are the tasks on that day:\n");
 
         for (int i = 0; i < filtered.size(); i++) {
-            ui.print((i + 1) + ". " + filtered.get(i));
+            result.append((i + 1)).append(". ").append(filtered.get(i)).append("\n");
         }
+
+        return result.toString();
     }
 
     /**
