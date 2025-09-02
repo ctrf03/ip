@@ -53,7 +53,7 @@ public class DeadlineCommand extends Command {
         save.save(tasks);
 
         return "Got it, I've added this task:\n" + tasks.get(tasks.size() - 1).toString()
-                + "\nNow you have " + tasks.size() + " tasks in the list.";
+                + "<SPLIT>Now you have " + tasks.size() + " tasks in the list.";
     }
 
     /**

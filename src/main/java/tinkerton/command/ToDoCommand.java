@@ -41,7 +41,7 @@ public class ToDoCommand extends Command {
         tasks.add(new ToDo(toDOName, false));
 
         StringBuilder result = new StringBuilder("Got it, I've added this task:\n");
-        result.append(tasks.get(tasks.size() - 1).toString()).append("\n");
+        result.append(tasks.get(tasks.size() - 1).toString()).append("<SPLIT>");
         result.append("Now you have ").append(tasks.size()).append(" tasks in the list.");
 
         save.save(tasks);
