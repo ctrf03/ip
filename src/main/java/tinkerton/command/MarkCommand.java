@@ -26,9 +26,10 @@ public class MarkCommand extends Command {
      * @param save The save handler for persisting tasks.
      * @throws TinkertonException If the command format is invalid or the task index is out of
      *         bounds.
+     * @return The farewell message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
+    public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
         String[] parts = fullCommand.split(" ");
 
@@ -44,10 +45,12 @@ public class MarkCommand extends Command {
 
         tasks.get(markId).complete();
 
-        ui.print("Nice! I've marked this task as done:");
-        ui.print(tasks.get(markId).toString());
-
         save.save(tasks);
+
+        StringBuilder result = new StringBuilder("Nice! I've marked this task as done:\n");
+        result.append(tasks.get(markId).toString());
+
+        return result.toString();
     }
 
     /**
