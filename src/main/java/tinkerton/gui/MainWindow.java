@@ -1,6 +1,7 @@
 package tinkerton.gui;
 
 import tinkerton.core.Tinkerton;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -29,6 +30,9 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog("Hello! I'm Tinkerton", dukeImage),
+                DialogBox.getDukeDialog("What can I do for you?", dukeImage));
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
@@ -45,8 +49,20 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = tinkerton.getResponse(input);
-        dialogContainer.getChildren().addAll(DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage));
+        if (response == "Bye. Hope to see you again soon!") {
+            handleExit();
+            return;
+        }
+        dialogContainer.getChildren().addAll(DialogBox.getUserDialog(input, userImage));
+
+        String[] parts = response.split("<SPLIT>");
+        for (String part : parts) {
+            dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(part.trim(), dukeImage));
+        }
         userInput.clear();
+    }
+
+    private void handleExit() {
+        Platform.exit();
     }
 }
