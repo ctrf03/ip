@@ -26,6 +26,7 @@ public class ShowCommand extends Command {
      * @param ui The user interface handler.
      * @param save The save handler for persisting tasks.
      * @throws TinkertonException If the command format is invalid or no tasks are found.
+     * @return The farewell message.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
