@@ -25,10 +25,11 @@ public class ByeCommand extends Command {
      * @param ui The user interface handler.
      * @param save The save handler for persisting tasks.
      * @throws TinkertonException Never thrown in this implementation.
+     * @return The farewell message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
-        ui.print("Bye. Hope to see you again soon!");
+    public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
