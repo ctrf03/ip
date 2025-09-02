@@ -26,9 +26,10 @@ public class UnmarkCommand extends Command {
      * @param save The save handler for persisting tasks.
      * @throws TinkertonException If the command format is invalid or the task index is out of
      *         bounds.
+     * @return The farewell message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
+    public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
         String[] parts = fullCommand.split(" ");
 
@@ -44,10 +45,12 @@ public class UnmarkCommand extends Command {
 
         tasks.get(unmarkId).uncomplete();
 
-        ui.print("OK, I've marked this task as not done yet:");
-        ui.print(tasks.get(unmarkId).toString());
+        StringBuilder result = new StringBuilder("OK, I've marked this task as not done yet:\n");
+        result.append(tasks.get(unmarkId).toString()).append("\n");
 
         save.save(tasks);
+
+        return result.toString();
     }
 
     /**
