@@ -1,3 +1,5 @@
+package tinkerton.gui;
+
 import javafx.application.Application;
 
 /**
