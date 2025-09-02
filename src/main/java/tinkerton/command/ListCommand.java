@@ -25,19 +25,22 @@ public class ListCommand extends Command {
      * @param ui The user interface handler.
      * @param save The save handler for persisting tasks.
      * @throws TinkertonException If the task list is empty.
+     * @return The farewell message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
+    public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         if (tasks.size() == 0) {
             throw new TinkertonException(
                     "I feel like your list is empty so there is no list to show...");
         }
 
-        ui.print("Here are the tasks in your list:");
+        StringBuilder result = new StringBuilder("Here are the tasks in your list:\n");
 
         for (int i = 0; i < tasks.size(); i++) {
-            ui.print((i + 1) + ". " + tasks.get(i));
+            result.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");
         }
+
+        return result.toString();
     }
 
     /**
