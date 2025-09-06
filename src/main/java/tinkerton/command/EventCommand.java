@@ -19,6 +19,19 @@ public class EventCommand extends Command {
         super(fullCommand);
     }
 
+    public String parseEventName(String fullCommand) {
+        return fullCommand.substring(6, fullCommand.indexOf("/from")).trim();
+    }
+
+    public String parseEventStart(String fullCommand) {
+        return fullCommand.substring(fullCommand.indexOf("/from") + 5, fullCommand.indexOf("/to"))
+                .trim();
+    }
+
+    public String parseEventEnd(String fullCommand) {
+        return fullCommand.substring(fullCommand.indexOf("/to") + 3).trim();
+    }
+
     /**
      * Executes the Event command, adding a new Event task to the list.
      *
@@ -31,30 +44,29 @@ public class EventCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
-        String[] parts = fullCommand.split("/from|/to");
+        String eventName = parseEventName(fullCommand);
+        String eventStart = parseEventStart(fullCommand);
+        String eventEnd = parseEventEnd(fullCommand);
 
         if (!fullCommand.contains("/from") || !fullCommand.contains("/to")) {
             throw new TinkertonException("Your event has no start and end...");
         }
 
-        if (parts.length < 3) {
+        if (eventStart.isEmpty() || eventEnd.isEmpty()) {
             throw new TinkertonException("You seem to be missing some information...");
         }
 
-        String start = parts[1].trim();
-
-        if (!start.matches("\\d{4}-\\d{2}-\\d{2} \\d{4}")) {
-            throw new TinkertonException("The format of your deadline should be yyyy-MM-dd HHmm!");
+        if (!eventStart.matches("\\d{4}-\\d{2}-\\d{2} \\d{4}")) {
+            throw new TinkertonException(
+                    "The format of your event start time should be yyyy-MM-dd HHmm!");
         }
 
-        String end = parts[2].trim();
-
-        if (!start.matches("\\d{4}-\\d{2}-\\d{2} \\d{4}")) {
-            throw new TinkertonException("The format of your deadline should be yyyy-MM-dd HHmm!");
+        if (!eventEnd.matches("\\d{4}-\\d{2}-\\d{2} \\d{4}")) {
+            throw new TinkertonException(
+                    "The format of your event end time should be yyyy-MM-dd HHmm!");
         }
 
-        String eventName = parts[0].substring(6).trim();
-        tasks.add(new Event(eventName, false, start, end));
+        tasks.add(new Event(eventName, false, eventStart, eventEnd));
 
         save.save(tasks);
 

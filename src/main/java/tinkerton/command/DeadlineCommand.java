@@ -19,6 +19,14 @@ public class DeadlineCommand extends Command {
         super(fullCommand);
     }
 
+    public String parseDeadlineName(String fullCommand) {
+        return fullCommand.substring(9, fullCommand.indexOf("/by")).trim();
+    }
+
+    public String parseDeadlineTime(String fullCommand) {
+        return fullCommand.substring(fullCommand.indexOf("/by") + 3).trim();
+    }
+
     /**
      * Executes the Deadline command, adding a new Deadline task to the list.
      *
@@ -31,24 +39,26 @@ public class DeadlineCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
-        String[] parts = fullCommand.split("/by");
+        String deadlineName = parseDeadlineName(fullCommand);
+        String deadlineTime = parseDeadlineTime(fullCommand);
+
+        if (deadlineName.isEmpty()) {
+            throw new TinkertonException("You seem to be missing some information...");
+        }
 
         if (!fullCommand.contains("/by")) {
             throw new TinkertonException("Your deadline task has no deadline...");
         }
 
-        if (parts.length < 2) {
+        if (deadlineTime.isEmpty()) {
             throw new TinkertonException("You seem to be missing some information...");
         }
 
-        String time = parts[1].trim();
-
-        if (!time.matches("\\d{4}-\\d{2}-\\d{2} \\d{4}")) {
+        if (!deadlineTime.matches("\\d{4}-\\d{2}-\\d{2} \\d{4}")) {
             throw new TinkertonException("The format of your deadline should be yyyy-MM-dd HHmm!");
         }
 
-        String deadlineName = parts[0].substring(9).trim();
-        tasks.add(new Deadline(deadlineName, false, time));
+        tasks.add(new Deadline(deadlineName, false, deadlineTime));
 
         save.save(tasks);
 
