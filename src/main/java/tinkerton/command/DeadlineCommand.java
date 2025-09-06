@@ -48,7 +48,10 @@ public class DeadlineCommand extends Command {
         }
 
         String deadlineName = parts[0].substring(9).trim();
+        int prevSize = tasks.size();
         tasks.add(new Deadline(deadlineName, false, time));
+        assert tasks.size() == prevSize
+                + 1 : "TaskList size should increase after adding a deadline";
 
         save.save(tasks);
 
