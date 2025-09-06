@@ -10,6 +10,8 @@ import tinkerton.storage.Save;
  * Represents a command to add a Deadline task.
  */
 public class DeadlineCommand extends Command {
+    private static final String DATE_TIME_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}";
+
     /**
      * Constructs a DeadlineCommand with the full command string.
      *
@@ -17,6 +19,14 @@ public class DeadlineCommand extends Command {
      */
     public DeadlineCommand(String fullCommand) {
         super(fullCommand);
+    }
+
+    public String parseDeadlineName(String fullCommand) {
+        return fullCommand.substring(9, fullCommand.indexOf("/by")).trim();
+    }
+
+    public String parseDeadlineTime(String fullCommand) {
+        return fullCommand.substring(fullCommand.indexOf("/by") + 3).trim();
     }
 
     /**
@@ -31,19 +41,22 @@ public class DeadlineCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
-        String[] parts = fullCommand.split("/by");
+        String deadlineName = parseDeadlineName(fullCommand);
+        String deadlineTime = parseDeadlineTime(fullCommand);
+
+        if (deadlineName.isEmpty()) {
+            throw new TinkertonException("You seem to be missing some information...");
+        }
 
         if (!fullCommand.contains("/by")) {
             throw new TinkertonException("Your deadline task has no deadline...");
         }
 
-        if (parts.length < 2) {
+        if (deadlineTime.isEmpty()) {
             throw new TinkertonException("You seem to be missing some information...");
         }
 
-        String time = parts[1].trim();
-
-        if (!time.matches("\\d{4}-\\d{2}-\\d{2} \\d{4}")) {
+        if (!deadlineTime.matches(DATE_TIME_REGEX)) {
             throw new TinkertonException("The format of your deadline should be yyyy-MM-dd HHmm!");
         }
 

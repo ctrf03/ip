@@ -19,6 +19,10 @@ public class ToDoCommand extends Command {
         super(fullCommand);
     }
 
+    public String parseToDoName(String fullCommand) {
+        return fullCommand.substring(5).trim();
+    }
+
     /**
      * Executes the ToDo command, adding a new ToDo task to the list.
      *
@@ -31,9 +35,9 @@ public class ToDoCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
-        String[] parts = super.getFull().split(" ");
+        String toDOName = parseToDoName(fullCommand);
 
-        if (parts.length < 2) {
+        if (toDOName.isEmpty()) {
             throw new TinkertonException("You seem to be missing some information...");
         }
 
