@@ -68,9 +68,8 @@ public class EventCommand extends Command {
                     "The format of your event end time should be yyyy-MM-dd HHmm!");
         }
 
-        String eventName = parts[0].substring(6).trim();
         int prevSize = tasks.size();
-        tasks.add(new Event(eventName, false, start, end));
+        tasks.add(new Event(eventName, false, eventStart, eventEnd));
         assert tasks.size() == prevSize + 1 : "TaskList size should increase after adding an event";
 
         save.save(tasks);

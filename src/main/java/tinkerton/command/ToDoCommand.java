@@ -35,15 +35,14 @@ public class ToDoCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Save save) throws TinkertonException {
         String fullCommand = super.getFull();
-        String toDOName = parseToDoName(fullCommand);
+        String toDoName = parseToDoName(fullCommand);
 
-        if (toDOName.isEmpty()) {
+        if (toDoName.isEmpty()) {
             throw new TinkertonException("You seem to be missing some information...");
         }
 
-        String toDOName = fullCommand.substring(5).trim();
         int prevSize = tasks.size();
-        tasks.add(new ToDo(toDOName, false));
+        tasks.add(new ToDo(toDoName, false));
         assert tasks.size() == prevSize + 1 : "TaskList size should increase after adding a ToDo";
 
         StringBuilder result = new StringBuilder("Got it, I've added this task:\n");
