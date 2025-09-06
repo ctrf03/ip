@@ -60,7 +60,11 @@ public class DeadlineCommand extends Command {
             throw new TinkertonException("The format of your deadline should be yyyy-MM-dd HHmm!");
         }
 
-        tasks.add(new Deadline(deadlineName, false, deadlineTime));
+        String deadlineName = parts[0].substring(9).trim();
+        int prevSize = tasks.size();
+        tasks.add(new Deadline(deadlineName, false, time));
+        assert tasks.size() == prevSize
+                + 1 : "TaskList size should increase after adding a deadline";
 
         save.save(tasks);
 

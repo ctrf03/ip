@@ -41,7 +41,10 @@ public class ToDoCommand extends Command {
             throw new TinkertonException("You seem to be missing some information...");
         }
 
+        String toDOName = fullCommand.substring(5).trim();
+        int prevSize = tasks.size();
         tasks.add(new ToDo(toDOName, false));
+        assert tasks.size() == prevSize + 1 : "TaskList size should increase after adding a ToDo";
 
         StringBuilder result = new StringBuilder("Got it, I've added this task:\n");
         result.append(tasks.get(tasks.size() - 1).toString()).append("<SPLIT>");
