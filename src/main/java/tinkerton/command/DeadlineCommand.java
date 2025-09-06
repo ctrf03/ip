@@ -60,6 +60,10 @@ public class DeadlineCommand extends Command {
             throw new TinkertonException("The format of your deadline should be yyyy-MM-dd HHmm!");
         }
 
+        if (tasks.containsTaskName(deadlineName)) {
+            throw new TinkertonException("This task already exists in your list.");
+        }
+
         int prevSize = tasks.size();
         tasks.add(new Deadline(deadlineName, false, deadlineTime));
         assert tasks.size() == prevSize

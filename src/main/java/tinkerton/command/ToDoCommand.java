@@ -41,6 +41,10 @@ public class ToDoCommand extends Command {
             throw new TinkertonException("You seem to be missing some information...");
         }
 
+        if (tasks.containsTaskName(toDoName)) {
+            throw new TinkertonException("This task already exists in your list.");
+        }
+
         int prevSize = tasks.size();
         tasks.add(new ToDo(toDoName, false));
         assert tasks.size() == prevSize + 1 : "TaskList size should increase after adding a ToDo";

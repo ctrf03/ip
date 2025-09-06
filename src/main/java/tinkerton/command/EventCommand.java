@@ -67,6 +67,10 @@ public class EventCommand extends Command {
             throw new TinkertonException(
                     "The format of your event end time should be yyyy-MM-dd HHmm!");
         }
+        
+        if (tasks.containsTaskName(eventName)) {
+            throw new TinkertonException("This task already exists in your list.");
+        }
 
         int prevSize = tasks.size();
         tasks.add(new Event(eventName, false, eventStart, eventEnd));

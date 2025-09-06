@@ -75,4 +75,14 @@ public class TaskList {
         return new TaskList(this.tasks.stream().filter(predicate)
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
+
+    /**
+     * Checks if a task with the given name already exists in the list.
+     *
+     * @param name The name of the task to check.
+     * @return true if a task with the same name exists, false otherwise.
+     */
+    public boolean containsTaskName(String name) {
+        return tasks.stream().anyMatch(task -> task.name().equalsIgnoreCase(name));
+    }
 }
