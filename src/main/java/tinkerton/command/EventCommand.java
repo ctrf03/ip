@@ -10,6 +10,8 @@ import tinkerton.storage.Save;
  * Represents a command to add an Event task.
  */
 public class EventCommand extends Command {
+    private static final String DATE_TIME_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}";
+
     /**
      * Constructs an EventCommand with the full command string.
      *
@@ -56,12 +58,12 @@ public class EventCommand extends Command {
             throw new TinkertonException("You seem to be missing some information...");
         }
 
-        if (!eventStart.matches("\\d{4}-\\d{2}-\\d{2} \\d{4}")) {
+        if (!eventStart.matches(DATE_TIME_REGEX)) {
             throw new TinkertonException(
                     "The format of your event start time should be yyyy-MM-dd HHmm!");
         }
 
-        if (!eventEnd.matches("\\d{4}-\\d{2}-\\d{2} \\d{4}")) {
+        if (!eventEnd.matches(DATE_TIME_REGEX)) {
             throw new TinkertonException(
                     "The format of your event end time should be yyyy-MM-dd HHmm!");
         }

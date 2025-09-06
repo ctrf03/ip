@@ -10,6 +10,8 @@ import tinkerton.storage.Save;
  * Represents a command to add a Deadline task.
  */
 public class DeadlineCommand extends Command {
+    private static final String DATE_TIME_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{4}";
+
     /**
      * Constructs a DeadlineCommand with the full command string.
      *
@@ -54,7 +56,7 @@ public class DeadlineCommand extends Command {
             throw new TinkertonException("You seem to be missing some information...");
         }
 
-        if (!deadlineTime.matches("\\d{4}-\\d{2}-\\d{2} \\d{4}")) {
+        if (!deadlineTime.matches(DATE_TIME_REGEX)) {
             throw new TinkertonException("The format of your deadline should be yyyy-MM-dd HHmm!");
         }
 

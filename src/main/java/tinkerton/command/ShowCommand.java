@@ -10,6 +10,9 @@ import tinkerton.storage.Save;
  * Represents a command to show tasks occurring on a specific date.
  */
 public class ShowCommand extends Command {
+    private static final String DATE_REGEX = "\\d{4}-\\d{2}-\\d{2}";
+    private static final String DEFAULT_TIME = "0000";
+
     /**
      * Constructs a ShowCommand with the full command string.
      *
@@ -46,11 +49,11 @@ public class ShowCommand extends Command {
 
         String date = parts[1].trim();
 
-        if (!date.matches("\\d{4}-\\d{2}-\\d{2}")) {
+        if (!date.matches(DATE_REGEX)) {
             throw new TinkertonException("The format of your date should be yyyy-MM-dd!");
         }
 
-        Date check = new Date(date + " 0000");
+        Date check = new Date(date + " " + DEFAULT_TIME);
 
         TaskList filtered = tasks.filter(t -> t.onDate(check));
 
