@@ -54,7 +54,9 @@ public class EventCommand extends Command {
         }
 
         String eventName = parts[0].substring(6).trim();
+        int prevSize = tasks.size();
         tasks.add(new Event(eventName, false, start, end));
+        assert tasks.size() == prevSize + 1 : "TaskList size should increase after adding an event";
 
         save.save(tasks);
 

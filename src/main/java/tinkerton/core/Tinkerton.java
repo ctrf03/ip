@@ -24,7 +24,8 @@ public class Tinkerton {
      * @param filePath The path to the save file.
      */
     public Tinkerton(String filePath) {
-        this.save = new Save("data/Tinkerton.txt");
+        assert (filePath != null && !filePath.isEmpty()) : "File path should not be null or empty";
+        this.save = new Save(filePath);
         this.tasks = save.load();
         this.ui = new Ui();
     }
