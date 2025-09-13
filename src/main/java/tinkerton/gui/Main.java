@@ -12,10 +12,17 @@ import javafx.stage.Stage;
  * A GUI for Tinkerton using FXML.
  */
 public class Main extends Application {
+    /** The file path for saving and loading tasks. */
     private static final String FILE_PATH = "data/tasks.txt";
 
+    /** The Tinkerton application instance. */
     private Tinkerton tinkerton = new Tinkerton(FILE_PATH);
 
+    /**
+     * Starts the JavaFX application and initializes the main window.
+     *
+     * @param stage The primary stage for this application.
+     */
     @Override
     public void start(Stage stage) {
         try {
