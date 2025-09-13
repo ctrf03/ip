@@ -23,12 +23,19 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    /** The Tinkerton application instance. */
     private Tinkerton tinkerton;
 
+    /** The image representing the user. */
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+
+    /** The image representing Tinkerton. */
     private Image dukeImage =
             new Image(this.getClass().getResourceAsStream("/images/DaTinkerton.png"));
 
+    /**
+     * Initializes the main window, setting up the welcome messages and scroll binding.
+     */
     @FXML
     public void initialize() {
         dialogContainer.getChildren().addAll(
@@ -37,14 +44,19 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Tinkerton instance */
+    /**
+     * Injects the Tinkerton instance into the controller.
+     *
+     * @param t The Tinkerton application instance.
+     */
     public void setTinkerton(Tinkerton t) {
         tinkerton = t;
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and
-     * then appends them to the dialog container. Clears the user input after processing.
+     * Handles user input by creating dialog boxes for the user's message and Tinkerton's response.
+     * Splits the response if needed and appends dialog boxes to the container. Clears the user
+     * input after processing. Exits the application if the farewell message is received.
      */
     @FXML
     private void handleUserInput() {
